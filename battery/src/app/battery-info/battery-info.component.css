@@ -1,0 +1,16 @@
+.battery-info-window {
+    border: 1px solid black;
+}
+
+.battery-side {
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.battery-voltage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
