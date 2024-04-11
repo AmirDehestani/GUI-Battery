@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-battery-info',
@@ -8,14 +8,14 @@ import { Component } from '@angular/core';
   styleUrl: './battery-info.component.css'
 })
 export class BatteryInfoComponent {
-  side : string = 'L'
-  voltage : number = 15.2
+  @Input() side: string = '';
+  @Input() voltage: number = 0;
 
   voltageColor() : string {
     if (this.voltage > 14.0) {
       return "green"
     } else if (this.voltage > 13.5) {
-      return "yellow"
+      return "orange"
     } else {
       return "red"
     }

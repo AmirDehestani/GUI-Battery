@@ -1,4 +1,4 @@
-.battery-info-window {
+.battery-info-wrapper {
     border: 1px solid black;
 }
 
@@ -7,10 +7,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 5px;
 }
 
 .battery-voltage {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bold;
 }
