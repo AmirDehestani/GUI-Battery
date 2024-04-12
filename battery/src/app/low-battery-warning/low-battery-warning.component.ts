@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-low-battery-warning',
@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './low-battery-warning.component.css'
 })
 export class LowBatteryWarningComponent {
-
+  @Input() warningMessage : string = ''
+  @Input() display : string = ''
 }
