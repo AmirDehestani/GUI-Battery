@@ -1,3 +1,4 @@
+import { compileNgModule } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import * as ROSLIB from 'roslib';
 
@@ -8,6 +9,7 @@ export class RosService {
   private ros: ROSLIB.Ros;
   private leftBatteryVoltageSubscriber: ROSLIB.Topic;
   private rightBatteryVoltageSubscriber: ROSLIB.Topic;
+  private autonomyStatusSubscriber : ROSLIB.Topic;
 
   constructor() {
     // Initialize ROS connection
@@ -27,6 +29,13 @@ export class RosService {
       name: '/battery_voltage_right',  
       messageType: 'std_msgs/Float32'
     });
+
+    // Create subscriber for autonomy status topic
+    this.autonomyStatusSubscriber = new ROSLIB.Topic({
+      ros: this.ros,
+      name: '/SIL_Color',
+      messageType: 'std_msgs/String'
+    })
   }
 
   connectToRos() {
@@ -57,6 +66,13 @@ export class RosService {
       const float32Message = message as { data: number };
       const roundedValue = parseFloat(float32Message.data.toFixed(1));
       callback(roundedValue);
+    });
+  }
+
+  subscribeToAutonomyStatus(callback: (data: string) => void) {
+    this.autonomyStatusSubscriber.subscribe((message: any) => {
+      const silColorHex = message.data;
+      callback(silColorHex);
     });
   }
 }
